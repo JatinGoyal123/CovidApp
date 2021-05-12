@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Container, Form, Row, Col } from "react-bootstrap";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// import { Route } from "react-router-dom";
 import Resources from "./resources.js";
 import axios from "axios";
 function Admin_UserPage(props) {
@@ -9,6 +10,8 @@ function Admin_UserPage(props) {
   const [loginpassword, setLoginpassword] = useState("");
   const [checklogin, setChecklogin] = useState(false);
   const [titlepage, setTitlepage] = useState("");
+
+  // const [state, setstate] = useState(initialState)
 
   //  Onlogin submit button
   const onloginsubmit = async (e) => {
@@ -22,18 +25,19 @@ function Admin_UserPage(props) {
       email: loginemail,
       password: loginpassword,
     };
-    
+    // console.log(user);
+    // console.log("hello");
     axios.post("http://localhost:5000/users", user).then((res) => {
       console.log(res.data);
-      
+      // setTitlepage("Admin");
       if (res.data.success === true) {
-      
+        // console.log(res.data.data[0].type);
         setChecklogin(true);
         setTitlepage(res.data.data[0].type);
-      
+        // console.log(titlepage);
       } else {
         alert("Not a valid user");
-      
+        // setChecklogin(true);
       }
     });
   };
@@ -56,7 +60,7 @@ function Admin_UserPage(props) {
   const [type, setType] = useState("");
 
   const onsubmit = () => {
-    
+    // e.preventDefault();
     if (
       state !== "" &&
       restype !== "" &&
